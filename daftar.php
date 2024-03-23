@@ -190,27 +190,28 @@
       dan kemudian dipanggil fungsi checkIpk() dengan nilai IPK sebagai argumen.
       */
       function semester(smt) {
-        const nilai = [2.4, 3.5, 3.0, 2.5, 3.4, 1.8, 3.8, 3.1];
-        const ipk = nilai[smt.value - 1];
+        const nilai = [2.4, 3.5, 3.0, 2.5, 3.4, 1.8, 3.8, 3.1]; // Array nilai IPK 
+        const ipk = nilai[smt.value - 1]; // Mengambil IPK dari array berdasarkan nilai semester yang dipilih
 
-        if (smt.value != 0) {
-          document.querySelector("#ipk").value = ipk;
-          checkIpk(ipk);
+        if (smt.value != 0) { // Memeriksa apakah pengguna telah memilih semester (tidak 0)
+          document.querySelector("#ipk").value = ipk; // Menampilkan IPK di elemen input dengan id #ipk
+          checkIpk(ipk); // Memanggil fungsi checkIpk() dengan IPK sebagai argumen
         } else {
-          document.querySelector("#ipk").value = "";
+          document.querySelector("#ipk").value = ""; // Jika tidak memilih semester, mengosongkan input IPK
         }
       }
 
+      // Fungsi checkIpk(ipkku) digunakan untuk memeriksa apakah IPK yang diberikan melebihi 3.
       function checkIpk(ipkku) {
-        if (ipkku > 3) {
-          document.querySelector("#beasiswa").disabled = false;
-          document.querySelector("#beasiswa").focus();
-          document.querySelector("#berkas").disabled = false;
-          document.querySelector("#btnSubmit").disabled = false;
+        if (ipkku > 3) { // Memeriksa apakah IPK melebihi 3
+          document.querySelector("#beasiswa").disabled = false; // Mengaktifkan elemen beasiswa
+          document.querySelector("#beasiswa").focus(); // Fokus ke elemen beasiswa
+          document.querySelector("#berkas").disabled = false; // Mengaktifkan elemen berkas
+          document.querySelector("#btnSubmit").disabled = false; // Mengaktifkan tombol submit
         } else {
-          document.querySelector("#beasiswa").disabled = true;
-          document.querySelector("#berkas").disabled = true;
-          document.querySelector("#btnSubmit").disabled = true;
+          document.querySelector("#beasiswa").disabled = true; // Menonaktifkan elemen beasiswa
+          document.querySelector("#berkas").disabled = true; // Menonaktifkan elemen berkas
+          document.querySelector("#btnSubmit").disabled = true; // Menonaktifkan tombol submit
         }
       }
     </script>

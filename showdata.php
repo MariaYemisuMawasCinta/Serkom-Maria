@@ -94,15 +94,15 @@
             echo'</thead>';
             echo'<tbody>';
                 while ($row = mysqli_fetch_assoc($result)) { // Melakukan iterasi melalui setiap baris hasil query dan menetapkan nilainya ke dalam $row
-                    echo '<tr>';
-                    echo '<td>' . $row['MasukanNama'] . '</td>';
-                    echo '<td>' . $row['MasukanEmail'] . '</td>';
-                    echo '<td>' . $row['NomorHP'] . '</td>';
-                    echo '<td>' . $row['smt'] . '</td>';
-                    echo '<td>' . $row['ipk'] . '</td>';
-                    echo '<td>' . $row['beasiswa'] . '</td>';
-                    echo '<td>' . $row['status_ajuan'] . '</td>';
-                    echo '</tr>';
+                    echo '<tr>'; // Mencetak tag pembuka <tr> untuk setiap baris tabel.
+                    echo '<td>' . $row['MasukanNama'] . '</td>'; // Mencetak nilai dari kolom 'MasukanNama' di dalam tag <td>.
+                    echo '<td>' . $row['MasukanEmail'] . '</td>'; // Mencetak nilai dari kolom 'MasukanEmail' di dalam tag <td>.
+                    echo '<td>' . $row['NomorHP'] . '</td>'; // Mencetak nilai dari kolom 'NomorHP' di dalam tag <td>.
+                    echo '<td>' . $row['smt'] . '</td>'; // Mencetak nilai dari kolom 'smt' di dalam tag <td>.
+                    echo '<td>' . $row['ipk'] . '</td>'; // Mencetak nilai dari kolom 'ipk' di dalam tag <td>.
+                    echo '<td>' . $row['beasiswa'] . '</td>'; // Mencetak nilai dari kolom 'beasiswa' di dalam tag <td>.
+                    echo '<td>' . $row['status_ajuan'] . '</td>'; // Mencetak nilai dari kolom 'status_ajuan' di dalam tag <td>
+                    echo '</tr>'; // Mencetak tag penutup </tr> untuk menyelesaikan baris saat ini
                 }
             echo '</tbody>';
         echo '</table>';
@@ -138,15 +138,20 @@
     
 
     <script>
+    // Menambahkan event listener yang akan dieksekusi saat DOM telah dimuat sepenuhnya
     document.addEventListener('DOMContentLoaded', function() {
+    // Mendapatkan konteks 2D dari elemen dengan id "pendaftarChart"
     var ctx = document.getElementById("pendaftarChart").getContext('2d');
+    // Membuat objek Chart baru dengan konteks yang telah didapatkan sebelumnya
     var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-                    labels: [<?php while($row = mysqli_fetch_array($data_beasiswa)){echo '"'.$row['beasiswa'].'",';}?>],
+        type: 'bar', // Jenis grafik yang akan digunakan adalah bar
+        data: { // Data untuk grafik
+                    labels: [<?php while($row = mysqli_fetch_array($data_beasiswa)){echo '"'.$row['beasiswa'].'",';}?>], // Label untuk sumbu x, diambil dari hasil query PHP $data_beasiswa
+                    // Data pendaftar, diambil dari hasil query PHP $pendaftar
                     datasets: [{
-                        label: 'Jumlah Pendaftar',
+                        label: 'Jumlah Pendaftar', // Data jumlah pendaftar, diambil dari hasil query PHP $pendaftar
                         data: [<?php while($row = mysqli_fetch_array($pendaftar)){echo $row['MasukanNama'].',';}?>],
+                        // Warna latar belakang batang
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.7)',
                             'rgba(54, 162, 235, 0.7)',
@@ -154,18 +159,19 @@
                             'rgba(75, 192, 192, 0.7)',
                             'rgba(153, 102, 255, 0.7)',
                         ],
-                        borderWidth: 2
+                        borderWidth: 2 // Lebar garis batas
                     }]
                 },
-                options: {
-                    scales: {
+                options: { // Opsi konfigurasi grafik
+                    scales: {  // Konfigurasi skala sumbu y, dimulai dari nilai nol
                         y: {
                             beginAtZero: true
                         }
                     },
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    aspectRatio: 3,
+                    responsive: true, // Grafik responsif
+                    maintainAspectRatio: false, // Memelihara rasio aspek
+                    aspectRatio: 3, // Rasio aspek yang diinginkan
+                    // Konfigurasi plugin, dalam hal ini, menonaktifkan tampilan legenda
                     plugins: {
                         legend: {
                             display: false
