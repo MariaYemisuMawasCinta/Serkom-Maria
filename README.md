@@ -20,6 +20,6 @@ Mengembangkan system pendaftaran beasiswa di sebuah kampus secara online.
 ## Installasi
 
 1. Install Xampp
-2. Remote Project : 
+2. Remote Project : https://github.com/MariaYemisuMawasCinta/Serkom-Maria
 3. Extract di halaman xampp/htdocs (Sesuaikan dengan penyimpanan xampp anda)
 4. import file serkom.sql di http://localhost/phpmyadmin/
